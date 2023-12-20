@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Guesser</title>
+    <style>
+        @font-face {
+            font-family: 'minecraft';
+            src: url('../static/font/Minecraft.ttf') format('truetype');
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: minecraft;
+        }
+
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        #content {
+            position: relative;
+            z-index: -2;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .img-container {
+            position: fixed;
+            top: 0;
+            left: 15%;
+            right: 15%;
+            bottom: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-position: center center;
+
+        }
+
+        footer {
+            position: absolute;
+            bottom: 5%;
+            height: 10%;
+            left: 0;
+            right: 0;
+            background-color: rgb(247, 239, 229);
+            border: 0px;
+            border-top: 1px rgb(90, 208, 90);
+            border-left: 1px rgb(90, 208, 90);
+
+            border-color: rgb(56, 180, 7);
+            border-right: 4px solid darkgreen;
+            border-bottom: 6px solid darkgreen;
+
+            box-shadow: -3px 0 0 0 black,
+                3px 0 0 0 black,
+                0 -3px 0 0 black,
+                0 3px 0 0 black;
+        }
+
+        #ans {
+            border-style: none;
+            border-bottom-style: dashed;
+            border-color: black;
+            width: 50px;
+            margin-left: 47%;
+            text-align: center;
+        }
+
+        #submit {
+            position: relative;
+            right: 0;
+            background-color: chocolate;
+            border-radius: 4px;
+            width: 70px;
+        }
+
+        h3 {
+            padding: 1% 1% 1% 1%;
+            overflow: hidden;
+            border-right: 2px solid hsl(0, 0%, 80%);
+            white-space: nowrap;
+            animation: typewriter 4s steps(44) 1s 1 normal both,
+                blinkTextCursor 500ms infinite;
+        }
+
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 810px;
+            }
+        }
+
+        @keyframes blinkTextCursor {
+            from {
+                border-right-color: hsl(0, 0%, 80%);
+            }
+
+            to {
+                border-right-color: transparent;
+            }
+        }
+        .question-container{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="{% static 'img/background.webm' %}" type="video/webm">
+    </video>
+    <div class="img-container">
+        <div class="question-container">
+            <img src="{% static 'img/MainGame.webp' %}" alt="">
+            <footer>
+                <form action="{% url 'game' %}" method="post">
+                    {% csrf_token %}
+                    <label for="input" id="initial">
+                        {% if code is None %}
+                        <h3 class="question">Enter the number of bits in your imagined code:
+                        </h3>
+                        {% else %}
+                        <h3 class="question" >How many bits in your Code correspond with the bits
+                            in the following code: {{code}}
+                        </h3>
+                        {% endif %}
+                    </label>
+                    <input id="ans" type="number" name="input" required>
+                    <button id="submit" type="submit">NEXT
+                    </button>
+                </form>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

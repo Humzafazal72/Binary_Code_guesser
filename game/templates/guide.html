@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Guesser</title>
+    <style>
+        @font-face {
+            font-family: 'minecraft';
+            src: url('../static/font/Minecraft.ttf') format('truetype');
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: minecraft;
+        }
+
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        #content {
+            position: relative;
+            z-index: -2;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .img-container {
+            position: fixed;
+            top: 0;
+            left: 15%;
+            right: 15%;
+            bottom: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-position: center center;
+            border-left-style: solid;
+            border-right-style: solid;
+            border-color: black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="{% static 'img/background.webm' %}" type="video/webm">
+    </video>
+    <div class="img-container">
+        <img src="{% static 'img/howto.webp' %}" alt="">
+    </div>
+</body>
+
+</html>

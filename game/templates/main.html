@@ -1,0 +1,142 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        @font-face {
+            font-family: 'minecraft';
+            src: url('../static/font/Minecraft.ttf') format('truetype');
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: minecraft;
+        }
+
+        #video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            /* Place it behind other content */
+        }
+        #content {
+            position: relative;
+            z-index: -2;
+            /* Place it above the video */
+            color: #fff;
+            /* Set text color to contrast with video */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .img-container {
+            position: fixed;
+            top: 0%;
+            left: 15%;
+            right: 15%;
+            bottom: 0%;
+            overflow: hidden;
+            z-index: -1;
+            border-style: solid;
+            border-color: aliceblue;
+            border-width: 1px;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-position: center center;
+        }
+
+        .container {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn {
+            font-size: 1.2em;
+            width: 150px;
+            height: 50px;
+            background: #06C1DE;
+            border: 0px;
+            position: relative;
+            box-shadow:
+                inset -4px 2px 1px 1px grey,
+                inset -4px -2px 1px 1px lightgray,
+                inset 4px 0px 1px 1px lightgray;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+            background-color: #06B6D1;
+        }
+
+        .btn:active {
+            top: 5px;
+            box-shadow:
+                -4px 2px 1px 1px grey,
+                -4px -2px 1px 1px lightgray,
+                4px 0px 1px 1px lightgray;
+        }
+
+        .btn::after {
+            content: '';
+            background: black;
+            position: absolute;
+            left: -2.5%;
+            top: 0;
+            width: 105%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .btn::before {
+            content: '';
+            background: black;
+            position: absolute;
+            left: 0;
+            top: -5%;
+            width: 100%;
+            height: 113%;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="{% static 'img/background.webm' %}" type="video/webm">
+    </video>
+    <div class="img-container">
+        <img src="{% static 'img/StartingPage.webp' %}" alt="">
+    </div>
+    <div class="container">
+        <button onclick="redirectToGame()" class="btn">START</button>
+        <br>
+        <br>
+        <button onclick="redirectToGuide()" class="btn">GUIDE</button>
+    </div>
+
+        <script>
+        function redirectToGame() {
+            window.location.href = "{% url 'game' %}";
+        }
+        function redirectToGuide() {
+            window.location.href = "{% url 'guide' %}";
+        }
+    </script>
+
+</body>
+
+</html>
