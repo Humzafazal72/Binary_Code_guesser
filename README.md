@@ -1,10 +1,10 @@
-# Binary Code Guessor
+# Binary Code Guessor 🎮✨
 
-Welcome to Binary Code Guessor, a game built with Django! 
+Welcome to Binary Code Guessor, a game built with Django! 🚀
 
 ## About the Game
 
-Binary Code Guessor is a fun and engaging game where the game will correctly guess a n-bit binary string/code.
+Binary Code Guessor is a fun and engaging game where the game will correctly guess a n-bit binary string/code. 💡
 
 ## Prerequisites
 
